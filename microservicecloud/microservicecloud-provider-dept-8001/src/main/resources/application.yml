@@ -1,0 +1,43 @@
+#端口设置
+server:
+  port: 8001
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml #mybatis配置文件所在路径
+  type-aliases-package: com.atguigu.springcloud.entities #所有entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml #mapper映射文件
+  
+spring:
+  application:
+   name: microservicecloud-dept      #对外暴露微服务名字
+    #数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloudDB01?useUnicode=true&characterEncoding=UTF-8
+    password: 123456
+    username: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver 
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+
+eureka:
+  client: #将客户端注册进eureke服务列表中
+    service-url:
+      #defaultZone: http://localhost:7001/eureka  #入驻3个eureka服务中
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance: 
+    instance-id: microservicecloud-dept-8001   #自定义服务名称信息       ID,当我们修改之后他不会直接删掉，而是保存
+    prefer-ip-address: true  #访问路径可以显示IP地址
+    
+info:
+  app.name: atguigu-microservicecloud
+  company.name: www.atguigu.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+#启动调试信息
+debug: true
+

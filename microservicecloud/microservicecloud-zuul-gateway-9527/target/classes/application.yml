@@ -1,0 +1,41 @@
+#端口设置
+server:
+  port: 9527
+  
+spring:
+  application:
+   name: microservicecloud-zuul-gateway      #对外暴露微服务名字
+
+eureka:
+  client: #将客户端注册进eureke服务列表中
+    service-url:
+      #defaultZone: http://localhost:7001/eureka  #入驻3个eureka服务中
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance: 
+    instance-id: gateway-9527.com   #自定义服务名称信息       ID,当我们修改之后他不会直接删掉，而是保存
+    prefer-ip-address: true  #访问路径可以显示IP地址
+    
+zuul:
+  prefix: /atguigu
+  ignored-services: "*"   #原真实的微服务名字忽略。，只能用配置的假的
+  routes:
+    mydept.serviceId: microservicecloud-dept
+    mydept.path: /mydept/**
+
+
+
+info:
+  app.name: atguigu-microcloud
+  company.name: www.atguigu.com
+  build.artifactId: microservicecloud-zuul-gateway-9527
+  build.version: 0.0.1-SNAPSHOT
+
+
+
+
+
+
+
+
+
+

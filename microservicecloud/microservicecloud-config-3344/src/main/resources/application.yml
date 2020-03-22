@@ -1,0 +1,22 @@
+#端口设置
+server:
+  port: 3344
+  
+spring:
+  application:
+    name: microservicecloud-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Nancy2-vo/microservicecloud-config.git   #github上面项目
+
+
+
+
+
+
+
+
+
+
